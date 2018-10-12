@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import './index.less'
 import utils from '../../utils/index'
-import axios from 'axios'
+// import axios from 'axios'
 const formDate=utils.formDate
  class Header extends Component{
      state={
@@ -19,13 +19,19 @@ const formDate=utils.formDate
          },1000)
      }
      getWeather=()=>{
-        axios.get(`http://t.weather.sojson.com/api/weather/city/101010100`)
-    .then(res=>{
-        console.log(res)
-       let weatherData=res.data.data.forecast[0]
-       let weatherStr=`${weatherData.low}~${weatherData.high}${weatherData.fx}${weatherData.fl}` 
-        this.setState({weather:weatherStr})    
-    }) 
+    //     axios.get(`http://t.weather.sojson.com/api/weather/city/101010100`)
+    // .then(res=>{
+    //     console.log(res)
+    //    let weatherData=res.data.data.forecast[0]
+    //    let weatherStr=`${weatherData.low}~${weatherData.high}${weatherData.fx}${weatherData.fl}` 
+    //     this.setState({weather:weatherStr})    
+    // }) 
+    utils.get('city/101010100').then(res=>{
+            console.log(res)
+           let weatherData=res.data.forecast[0]
+           let weatherStr=`${weatherData.low}~${weatherData.high}${weatherData.fx}${weatherData.fl}` 
+            this.setState({weather:weatherStr})    
+        }) 
     }
      componentWillMount(){
         this.getTime()
