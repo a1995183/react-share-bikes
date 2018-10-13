@@ -6,12 +6,14 @@ import NotMath from '../views/notMatch'
 import orderDemo from '../views/order_demo'
 import SecondPage from '../views/secondpage'
 import Pie from '../views/pie'
+import detail from '../views/order_demo/detail'
 class Router extends Component{
     render(){
       return(
         <HashRouter>
-        <div>   
+        <div>  
             <Switch>
+                <Route path="/common/order/detail/:id" component={detail}></Route>
                 <Route path="/admin" render={()=>
                     <Admin>
                         <Switch>

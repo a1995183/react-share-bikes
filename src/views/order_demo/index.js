@@ -104,6 +104,14 @@ const { MonthPicker, RangePicker } = DatePicker;
      componentWillMount(){
          this.getTable()
      }
+     handledetail=()=>{
+       let item=this.state.selectedItem
+       if(!item){
+           message.error('请选择一项订单操作')
+    }else{
+        window.open(`/#/common/order/detail/${item[0].id}`,`_blank`)
+       }  
+     }
      handleDone=()=>{
          //弹出结束订单
         let selectedItem=this.state.selectedItem
@@ -243,7 +251,7 @@ const { MonthPicker, RangePicker } = DatePicker;
                     </div>
                 </Card>
                 <Card style={{marginTop:'-1px'}}>
-                    <Button type="primary" className='mar-20'>订单详情</Button>
+                    <Button type="primary" onClick={this.handledetail} className='mar-20'>订单详情</Button>
                     <Button type="primary" onClick={this.handleDone}>结束订单</Button>
                 </Card>
                 <Card>
