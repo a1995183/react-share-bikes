@@ -1,15 +1,24 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Menu} from 'antd'
+import {connect} from 'react-redux'
 import './index.less'
+import {bindActionCreators} from 'redux'
+import action from '../../redux/action'
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
  class Navleft extends Component{
+    clickMenuItem=({item,key,keyPath})=>{
+console.log(item)
+const text=item.props.children.props.children
+this.props.action.changeMenuItem(text)
+
+    }
 render(){
 return(
 <div className="nav-left">
-   <Menu  mode="inline" theme="dark">
-        <MenuItem key="/首页">
+   <Menu  mode="inline" theme="dark" onClick={this.clickMenuItem}>
+        <MenuItem key="/首页"> 
              <Link to="/admin/home">首页</Link>
         </MenuItem>
         <SubMenu title="订单管理">
@@ -31,4 +40,6 @@ return(
 )
 }
 }
-export default Navleft
+export default connect(null,(dispatch)=>({
+action:bindActionCreators(action,dispatch)
+}))(Navleft)

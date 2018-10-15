@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import './index.less'
 import utils from '../../utils/index'
+import {connect} from 'react-redux'
 // import axios from 'axios'
 const formDate=utils.formDate
  class Header extends Component{
@@ -49,7 +50,7 @@ return(
         </div>
     </div>
     <div className="weather-wrap clearfix">
-        <div className="breadcrumb fll"><Link to='/admin/home'>首页</Link></div>
+        <div className="breadcrumb fll"><Link to='/admin/home'>{this.props.menuText.menuItemText}</Link></div>
     
         <div className="weather flr clearfix">
             <div className="date fll">
@@ -64,4 +65,11 @@ return(
 )
 }
 }
-export default Header
+export default connect(
+    function mapStateToProps(state){
+        return{
+            menuText:state
+        }
+    }
+)(Header
+)
